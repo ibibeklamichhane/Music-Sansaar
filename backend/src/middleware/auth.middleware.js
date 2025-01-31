@@ -1,4 +1,4 @@
-import { clerrClient } from '@clerk/express';
+import { clerkClient } from '@clerk/express';
 
 export const protectedRoute = async(req, res, next) => {
 if(!req.auth.userId) {
@@ -9,9 +9,9 @@ next();
 
 
 export const requireAdmin = async(req, res, next) => {
-    try {
+    try { 
         
-        const user = await clerrClient.getUser(req.auth.userId);
+        const user = await clerkClient.getUser(req.auth.userId);
         const isAdmin = process.env.ADMIN_EMAIL === currentUser.primaryEmailAddress?.emailAddress;
 
         if(!isAdmin) {
