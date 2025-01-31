@@ -37,7 +37,10 @@ app.use("/api/admin",adminRoutes)
 
 
 
-
+//error hadlerer for all the controller error
+app.use((err,req,res,next) =>{
+    res.status(500).json({message:process.env.NODE_ENV ==="production"?"Internal Server Error":err.message});
+})
 
 app.listen(Port,() => {
     console.log("Service runninon on" + Port);
